@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertion Sort</title>
+</head>
+<body>
+    <h1>Insertion Sort</h1>
+    <label for="input_numero">Número: </label>
+    <input type="number" id="input_numero">
+    <br>
+    <button onclick="cadastrar_numero()">Cadastrar Número</button>
+    <button onclick="ordenar_lista()">Ordenar Lista</button>
+    <br>
+    <div id="div_lista"></div>
+</body>
+</html>
+
+<script>
+
+    //Referência: https://stackabuse.com/insertion-sort-in-javascript/
+
+    var lista_numeros = [];
+    function cadastrar_numero() {
+        let numero = Number(input_numero.value);
+        lista_numeros.push(numero);
+        div_lista.innerHTML = lista_numeros;
+    }
+
+    function ordenar_lista() {
+        let tamanho_lista = lista_numeros.length;
+        for (let contador = 1; contador < tamanho_lista; contador++) {
+            let posicao_atual = lista_numeros[contador];
+            let posicao_anterior = contador - 1;
+            while ((posicao_anterior > -1) && (posicao_atual < lista_numeros[posicao_anterior])) {
+                lista_numeros[posicao_anterior + 1] = lista_numeros[posicao_anterior];
+                posicao_anterior--;
+            }
+            lista_numeros[posicao_anterior + 1] = posicao_atual;
+        }
+        div_lista.innerHTML = lista_numeros;
+    }
+
+</script>
